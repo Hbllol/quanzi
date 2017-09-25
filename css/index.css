@@ -1,0 +1,62 @@
+.homebanner{width: 100%;height: auto;}
+.homebanner img{width: 100%;display: block;}
+.homeList{width:90%;height: auto;margin: 0 auto;}
+.homeList h1{font-family:'PingFangSC-Regular';font-size: 26px;color: #333333;}
+.homeList h2{font-family:'PingFangSC-Regular';color: #4C4C4C;line-height: 26px;text-align: right;font-size: 14px;}
+.homeList h2 a{color: #FF4345;font-size: 20px;}
+.low-1{width: 100%;height: auto;padding: 20px 0;border-bottom:1px solid #E6E6E6;}
+.low-1 p{font-size: 16px;color: #999999;width: 90%;margin: 0 auto;}
+.icoout{width: 90%;height: auto;margin: 0 auto;margin-top:20px;overflow: hidden;}
+.low-ico{width: 25px;height: 25px;background: url('../img/low5.png') no-repeat;background-size:100%;background-position:center center;float: left;}
+.low-dcu{text-indent: 10px;font-size: 18px;;line-height: 25px;color: #999;}
+.low-2 .low-ico{background: url('../img/low3.png');height: 27px;}
+.low-3 .low-ico{background: url('../img/low4.png');height: 27px;}
+.low-2 .low-dcu,.low-3 .low-dcu{line-height: 32px;}
+.low-2 p {width:100%;}
+.low-2 .icoout {width:100%;}
+.fa-angle-right{position: absolute;color:#9B9B9B;font-size: 25px;top:50%;margin-top:-12.5px;right: -10px;}
+.icon-out{width: 90%;height: auto;margin: 0 auto;position: relative;}
+.low-4 p a{color:#FF4345; }
+.low-4 .icoout{width:100%;}
+.low-4 .icoout li:nth-of-type(1){margin-left: 0;}
+.low-4 .icoout li{width:50px;height: 50px;float: left;border-radius: 50%;background: url('../img/index_02.jpg') no-repeat;background-position:center center;margin-left: 25px;}
+.content{width: 100%;height: auto;}
+.content-title{width: 100%;height: 27px;border-left: 3px solid #1AA8FE;margin-top:20px;}
+.content-title p{width: 90%;margin: 0 auto;color: #333;font-size:18px;font-weight: bold;}
+.content-title p a{font-size: 16px;font-weight: normal;color: #999;}
+.dynamic{border-top:20px solid #F8F8F8;padding: 10px 0;}
+.dynamic .content-title{margin: 0;}
+.dynamicList{width: 90%;height: auto;margin: 0 auto;}
+.user-title{width:100%;height:auto;overflow:hidden;margin-top:20px;}
+.user-img {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background: url("http://img01.shdsjt.cn/Upload/EnterpriseCourse/49116b6c-6cd8-4fb6-b8a7-10ba7c7d2662031602.png");
+    background-size:100% 100%;
+    background-position:center center;
+    float:left;
+}
+.user-low-1{float:left;margin-left:20px;}
+.user-low-1 p{margin:0;height:35px;line-height:35px;}
+.user-low-1 p:nth-of-type(1){font-size:18px;color: #2A2A2A;}
+.user-low-1 p:nth-of-type(2){font-size:14px;color:#999;}
+.uswe-low-2{float:right;font-size:14px;color:#9B9B9B;line-height:70px;}
+.user-content p {
+    margin:0;
+    margin-top: 10px;
+}
+.user-content{width:100%;height:auto;font-size:16px;overflow:hidden;}
+.content-img{width:100%;height:auto;overflow:hidden;list-style:none;margin-top:30px;}
+.content-img li{float:left;width:30%;height:auto;}
+.content-img li img{width:100%;display:block;}
+.content-img li:nth-of-type(2){margin-left:5%;}
+.content-img li:nth-of-type(3){margin-left:5%;}
+.user-icon{float:right;height:auto;color:#999;font-size:14px;margin-top:20px;clear:both;overflow:hidden;}
+.user-comment{width:100%;height:auto;background:#F8F8F8;border:1px solid #ccc;border-radius:10px;margin-top:100px;}
+.user-comment p{width:100%;font-size:16px;margin-top:5px;}
+.user-comment p a{color:blue;}
+.downApp{width: 240px;height: 50px;background: #FD8238;border-radius: 10px;font-size: 20px;color: #eee;text-align: center;line-height: 50px;margin: 50px auto; }
+.downTell{width:150px;height: 40px;margin: 0 auto;margin-bottom: 30px;}
+.downTell .tell-img{width: 40px;height: 40px;float: left;background: url('../img/low6.png') no-repeat;background-position:center center;background-size:90%;}
+.downTell h1{float: left;line-height: 40px;color: #333;margin-left: 10px;font-size: 20px;font-weight: bold;letter-spacing: 3px;}

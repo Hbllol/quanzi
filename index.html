@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1,minimum-scale=1">
+  <meta name="renderer" content="webkit">
+  <link rel="stylesheet"  href="css/swiper-3.4.2.min.css" type="text/css" />
+  <link rel="stylesheet"  href="fonts/css/font-awesome.min.css" type="text/css" />  
+  <link rel="stylesheet"  href="css/com.css" type="text/css" />  
+  <link rel="stylesheet"  href="css/index.css" type="text/css" />
+  <title>圈子</title>
+</head>
+<style>
+    .swiper-pagination-bullet{opacity: 1;background: #eee;}
+    .swiper-pagination-bullet-active{width: 10px;height: 10px;top:1px;}
+</style>
+  <body>
+     <div class="homebanner">
+         <div class="swiper-container">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <img src="img/index_02.jpg" alt="">                          
+                </div>
+                <div class="swiper-slide">
+                    <img src="img/index_02.jpg" alt="">                          
+                </div>
+                <div class="swiper-slide">
+                    <img src="img/index_02.jpg" alt="">                          
+                </div>
+            </div>
+             <div class="swiper-pagination"></div>
+        </div>    
+     </div>
+     <div class="homeList">
+         <h1></h1>
+         <h2>活动费用<a>￥免费</a></h2>
+     </div>
+    <div class="low-1">
+        <p>活动时间</p>
+        <div class="icoout">
+            <div class="low-ico"></div>
+            <div class="low-dcu" id='playTime'></div>   
+        </div>     
+    </div>
+    <div class="low-1 low-2">
+        <div class="icon-out">
+            <p>活动地点</p>
+            <div class="icoout">
+                <div class="low-ico"></div>
+                <div class="low-dcu" id='site'></div>   
+            </div> 
+            <i class="fa fa-angle-right"></i>                        
+        </div>    
+    </div>
+    <div class="low-1 low-3">
+        <p>活动人数</p>
+        <div class="icoout">
+            <div class="low-ico"></div>
+            <div class="low-dcu" id='activNumber'></div>   
+        </div>     
+    </div>
+     <div class="low-1 low-4">
+        <p>已报名 ( <a>18</a> )</p>
+        <div class="icon-out">
+        <div class="icoout">
+             <ul>
+                 <li></li>
+                 <li></li>
+                 <li></li>
+                 <li></li>
+                 <li></li>                 
+             </ul>
+            <i class="fa fa-angle-right"></i>                                     
+        </div>     
+        </div>             
+    </div>
+    <div class="content">
+        <div class="content-title"><p>亮点</p></div>
+    </div>
+     <div class="content dynamic">
+        <div class="content-title"><p>活动动态 <a>(324)</a></p></div>
+     
+        <div class="dynamicList">
+            <div class="user-title">
+                <div class="user-img"></div>
+                <div class="user-low-1">
+                    <p>张曼玉</p>
+                    <p>M2-军事团</p>
+                </div>
+                <div class="uswe-low-2">8月8日 15:23</div>
+            </div>
+            <div class="user-content">
+                <p>话说请客吃饭不如流汗！</p>
+                <span>话说请客吃饭不如流汗！话说请客吃饭不如流汗！话说请客吃饭不如流汗！话说请客吃饭不如流汗！话说请客吃饭不如流汗！话说请客吃饭不如流汗！</span>
+                <ul class="content-img">
+                    <li><img src="http://img01.shdsjt.cn/Upload/EnterpriseCourse/49116b6c-6cd8-4fb6-b8a7-10ba7c7d2662031602.png" /></li>
+                    <li><img src="http://img01.shdsjt.cn/Upload/EnterpriseCourse/49116b6c-6cd8-4fb6-b8a7-10ba7c7d2662031602.png" /></li>
+                    <li><img src="http://img01.shdsjt.cn/Upload/EnterpriseCourse/49116b6c-6cd8-4fb6-b8a7-10ba7c7d2662031602.png" /></li>
+                </ul>
+                <div class="user-icon"> 
+                    <i class="fa fa-thumbs-o-up"></i>   2344 &nbsp;&nbsp;
+                    <i class="fa fa-commenting-o"></i>   2344
+                </div>
+                <div class="user-comment">
+                    <p><a>TF-BOY</a>:点个赞</p>
+                    <p><a>贾斯丁</a>回复 <a>TF-BOY</a>:同上 </p>
+                    <p><a>TF-BOY</a>:点个赞</p>
+                    <p><a>贾斯丁</a>回复 <a>TF-BOY</a>:同上 </p>
+                    <p><a>TF-BOY</a>:点个赞</p>
+                    <p><a>贾斯丁</a>回复 <a>TF-BOY</a>:同上 </p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="downApp">
+        下载APP立刻报名
+    </div>
+    <a href="tel:4001899996"><div class="downTell">
+       <div class="tell-img"></div>
+       <h1>联系客服</h1>
+    </div></a>   
+    <div id="box"></div> 
+  </body>
+</html>
+<script src='js/api.js'></script>
+<script src='js/jquery.js'></script>
+<script src='js/swiper-3.4.2.min.js'></script>
+<script>
+    var swiper = new Swiper('.swiper-container', {
+        paginationClickable:true,   
+        slidesPerView:1,
+        centeredSlides: false,
+        paginationClickable: true,
+        pagination : '.swiper-pagination',
+        parallax : true,
+        loop:true,
+        speed:2000,
+        // autoplay:5000,
+       
+    });
+    $.ajax({
+        url: api+GetActivityDetail,
+        type:'get',
+        data:{id:1},
+        success:function(data){
+          console.log(data)
+          var PicList = data.Data.PicList;
+          $('.homeList h1').html(data.Data.ActivityName)
+          var beforTime = data.Data.ActivityBeginDate
+          var afterTime = data.Data.ActivityBeginDate
+          if(beforTime.split('T')[0]==afterTime.split('T')[0]){
+             $('#playTime').html(beforTime.split('T')[0] + '  '+beforTime.split('T')[1]+'-'+afterTime.split('T')[1])
+          }else if(beforTime.split('T')[0]!=afterTime.split('T')[0]){
+             $('#playTime').html(beforTime.split('T')[0] + '  '+beforTime.split('T')[1]+'-'+afterTime.split('T')[0] + '  '+afterTime.split('T')[1])              
+          }
+          $('#site').html(data.Data.ActivityAddress)
+          $('#activNumber').html(data.Data.ActivityMin+'-'+data.Data.ActivityMax+'人')
+        }
+    })
+    $.ajax({
+        url: api+GetActivityApplyList,
+        type:'get',
+        data:{id:1},
+        success:function(data){
+            console.log(data)
+        }
+    })
+
+
+
+
+
+      androidURL ="http://xxx/xxx.apk";  
+  
+      var browser = {  
+           versions: function() {  
+                 var u = navigator.userAgent,  
+                     app = navigator.appVersion;  
+                 return {  
+                         android: u.indexOf("Android") > -1 || u.indexOf("Linux") >-1,  
+                         iPhone: u.indexOf("iPhone") > -1 ,  
+                         iPad: u.indexOf("iPad") >-1,  
+                         iPod: u.indexOf("iPod") > -1,  
+                       };  
+                 } (),  
+            language: (navigator.browserLanguage || navigator.language).toLowerCase()  
+         }  
+  
+         if (browser.versions.iPhone||browser.versions.iPad||browser.versions.iPod)  
+             {  
+                //如果是ios系統，直接跳轉至appstore該應用首頁，傳遞参數为該應用在appstroe的id號  
+                $('#box').html(1)
+                // window.location.href="itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewSoftware?id=123456";  
+             }  
+             else if(browser.versions.android)  
+             {  
+                $('#box').html(2)                 
+                // window.location.href = androidURL;  
+             } 
+</script>
