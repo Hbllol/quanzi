@@ -31,7 +31,8 @@
                 </div>
             </div>
              <div class="swiper-pagination"></div>
-        </div>    
+        </div>  
+        <div class="actName"></div>  
      </div>
      <div class="homeList">
          <h1></h1>
@@ -51,7 +52,7 @@
                 <div class="low-ico"></div>
                 <div class="low-dcu" id='site'></div>   
             </div> 
-            <i class="fa fa-angle-right"></i>                        
+            <i onclick="downApp('查看地点详情')" class="fa fa-angle-right"></i>                        
         </div>    
     </div>
     <div class="low-1 low-3">
@@ -72,15 +73,16 @@
                  <li></li>
                  <li></li>                 
              </ul>
-            <i class="fa fa-angle-right"></i>                                     
+            <i onclick="downApp('查看报名详情')" class="fa fa-angle-right"></i>                                     
         </div>     
         </div>             
     </div>
     <div class="content">
         <div class="content-title"><p>亮点</p></div>
+        <div id="desc"></div>
     </div>
      <div class="content dynamic">
-        <div class="content-title"><p>活动动态 <a>(324)</a></p></div>
+        <div class="content-title"><p>活动动态 <a id='StateNumber'>(324)</a></p></div>
      
         <div class="dynamicList">
             <div class="user-title">
@@ -92,12 +94,9 @@
                 <div class="uswe-low-2">8月8日 15:23</div>
             </div>
             <div class="user-content">
-                <p>话说请客吃饭不如流汗！</p>
-                <span>话说请客吃饭不如流汗！话说请客吃饭不如流汗！话说请客吃饭不如流汗！话说请客吃饭不如流汗！话说请客吃饭不如流汗！话说请客吃饭不如流汗！</span>
+                <span id='Desc'>话说请客吃饭不如流汗！话说请客吃饭不如流汗！话说请客吃饭不如流汗！话说请客吃饭不如流汗！话说请客吃饭不如流汗！话说请客吃饭不如流汗！</span>
                 <ul class="content-img">
-                    <li><img src="http://img01.shdsjt.cn/Upload/EnterpriseCourse/49116b6c-6cd8-4fb6-b8a7-10ba7c7d2662031602.png" /></li>
-                    <li><img src="http://img01.shdsjt.cn/Upload/EnterpriseCourse/49116b6c-6cd8-4fb6-b8a7-10ba7c7d2662031602.png" /></li>
-                    <li><img src="http://img01.shdsjt.cn/Upload/EnterpriseCourse/49116b6c-6cd8-4fb6-b8a7-10ba7c7d2662031602.png" /></li>
+                    
                 </ul>
                 <div class="user-icon"> 
                     <i class="fa fa-thumbs-o-up"></i>   2344 &nbsp;&nbsp;
@@ -106,10 +105,7 @@
                 <div class="user-comment">
                     <p><a>TF-BOY</a>:点个赞</p>
                     <p><a>贾斯丁</a>回复 <a>TF-BOY</a>:同上 </p>
-                    <p><a>TF-BOY</a>:点个赞</p>
-                    <p><a>贾斯丁</a>回复 <a>TF-BOY</a>:同上 </p>
-                    <p><a>TF-BOY</a>:点个赞</p>
-                    <p><a>贾斯丁</a>回复 <a>TF-BOY</a>:同上 </p>
+                    <p onclick="downApp('查看全部评论')">查看全部100条回复</p>
                 </div>
             </div>
         </div>
@@ -124,79 +120,192 @@
     </div></a>   
     <div id="box">
         <p>请下载东朔平方APP</p>
-        <p>查看报名详情</p>
+        <p></p>
         <div class="down">前往下载</div>
         <div class="close">点击关闭</div>
         <div class="code"><img src="img/code.png" alt=""></div>
     </div> 
+    
   </body>
 </html>
 <script src='js/api.js'></script>
 <script src='js/jquery.js'></script>
 <script src='js/swiper-3.4.2.min.js'></script>
 <script>
-    var swiper = new Swiper('.swiper-container', {
-        paginationClickable:true,   
-        slidesPerView:1,
-        centeredSlides: false,
-        paginationClickable: true,
-        pagination : '.swiper-pagination',
-        parallax : true,
-        loop:true,
-        speed:2000,
-        // autoplay:5000,
-       
-    });
+   function urlId(){
+    var location = window.location.href;
+    var galleryIds = location.split('?')[1];
+    //获取活动详情
     $.ajax({
         url: api+GetActivityDetail,
         type:'get',
-        data:{id:1},
+        data:{id:2},
         success:function(data){
           console.log(data)
           var PicList = data.Data.PicList;
+          $.each(PicList,function(i){
+              var html = '<div class="swiper-slide">'
+                            '<img src="'+PicList[i]+'" alt="">'                          
+                         '</div>'
+               $('.swiper-wrapper').append(html)
+                var swiper = new Swiper('.swiper-container', {
+                    paginationClickable:true,   
+                    slidesPerView:1,
+                    centeredSlides: false,
+                    paginationClickable: true,
+                    pagination : '.swiper-pagination',
+                    parallax : true,
+                    loop:true,
+                    speed:1000,
+                    autoplay:5000,
+                
+                });
+          })
+          $('.actName').html(data.Data.ActivityTypeName)
           $('.homeList h1').html(data.Data.ActivityName)
+          $('.homeList h2 a').html('￥'+data.Data.ActivityFee)
+          $('#desc').html(data.Data.ActivityDesc)
           var beforTime = data.Data.ActivityBeginDate
-          var afterTime = data.Data.ActivityBeginDate
+          var afterTime = data.Data.ActivityEndDate
           if(beforTime.split('T')[0]==afterTime.split('T')[0]){
-             $('#playTime').html(beforTime.split('T')[0] + '  '+beforTime.split('T')[1]+'-'+afterTime.split('T')[1])
+              //开始日期处理
+              var beData = (beforTime.split('T')[0]).split('-');
+              var beData2 = beData.join('.')
+              //开始时间处理
+              var beTime = (beforTime.split('T')[1]).split(':');
+              beTime.splice(2,1)
+              var beTime2 = beTime.join(':')
+              //结束时间处理
+              var afTime = (afterTime.split('T')[1]).split(':');
+              afTime.splice(2,1)
+              var afTime2 = afTime.join(':')
+              
+             $('#playTime').html(beData2 + '  '+beTime2+'-'+afTime2)
           }else if(beforTime.split('T')[0]!=afterTime.split('T')[0]){
-             $('#playTime').html(beforTime.split('T')[0] + '  '+beforTime.split('T')[1]+'-'+afterTime.split('T')[0] + '  '+afterTime.split('T')[1])              
+              //开始日期处理
+              var beData = (beforTime.split('T')[0]).split('-');
+              var beData2 = beData.join('.')
+              //结束日期处理
+              var afData = (afterTime.split('T')[0]).split('-');
+              var afData2 = afData.join('.')
+              //开始时间处理
+              var beTime = (beforTime.split('T')[1]).split(':');
+              beTime.splice(2,1)
+              var beTime2 = beTime.join(':')
+              //结束时间处理
+              var afTime = (afterTime.split('T')[1]).split(':');
+              afTime.splice(2,1)
+              var afTime2 = afTime.join(':')
+             $('#playTime').html( beData2+ '  '+beTime2+' - '+afData2 + '  '+afTime2)              
           }
           $('#site').html(data.Data.ActivityAddress)
           $('#activNumber').html(data.Data.ActivityMin+'-'+data.Data.ActivityMax+'人')
         }
     })
+    //获取参加人员列表    
     $.ajax({
         url: api+GetActivityApplyList,
+        type:'get',
+        data:{id:2},
+        success:function(data){
+            console.log(data)
+            $('.low-4 p a').html(data.Data.length)
+            // for(var i = 0; i < 5;i++){
+            //     var html =  '<li style="background:url('+data.Data[i].CustomerPic+')"></li>'
+            //     $('.icoout ul').append(html)
+            // }
+        }
+    })
+    //获取动态详情信息
+    $.ajax({
+        url: api+GetDynamicStateDetail,
         type:'get',
         data:{id:1},
         success:function(data){
             console.log(data)
+            // var PicList = data.Data.PicList;
+            // $.each(PicList,function(i){
+            //    var html = '<li><img src="'+PicList[i]+'" /></li>'
+            //    $('.content-img').append(html)
+            //    if(PicList.length==1){
+            //        $('.content-img li').eq(i).css({'width':'100%'})
+            //    }else if(PicList.length==2){
+            //        $('.content-img li').eq(i).css({'width':'45%'})
+            //        $('.content-img li').eq(1).css({'margin-left':'10%'})                                                         
+            //    }
+            // })
+            // $('#Desc').html(data.Data.DynamicStateDesc)
+            // $('.user-low-1 p').eq(0).html(data.Data.CommentList[0].CustomerName)
+            // $('.user-low-1 p').eq(1).html(data.Data.CommentList[0].Comment)      
+            // $('.uswe-low-2').html(data.Data.CreateTime)      
         }
     })
-
-
-
+    // 获取圈子动态信息-列表
+    $.ajax({
+        url:api+GetDynamicStateList,
+        type:'get',
+        data:{pageSize:1000},
+        success:function(data){
+            var StateNumber = data.Data.DynamicStateList.length;
+            
+            // console.log(StateNumber)
+            // for(var i=0;i<6;i++){
+            //   console.log(data.Data.DynamicStateList[i].DynamicStateId)
+            // }
+        }
+    })
+    // news 
+    $.ajax({
+        url: api+GetDynamicState,
+        type: 'get',
+        data:{type:'activity',id:2},
+        success:function(data){
+            console.log(data)
+            $('#StateNumber').html('('+data.Data.DynamicStateList.length+')')
+            var PicList = data.Data.DynamicStateList[0].PicList;
+            $.each(PicList,function(i){
+               var html = '<li><img src="'+PicList[i]+'" /></li>'
+               $('.content-img').append(html)
+               if(PicList.length==1){
+                   $('.content-img li').eq(i).css({'width':'100%'})
+               }else if(PicList.length==2){
+                   $('.content-img li').eq(i).css({'width':'45%'})
+                   $('.content-img li').eq(1).css({'margin-left':'10%'})                                                         
+               }
+            })
+            $('#Desc').html(data.Data.DynamicStateList[0].DynamicStateDesc)
+            // $('.user-low-1 p').eq(0).html(data.Data.DynamicStateList[0].CustomerName)
+            // $('.user-low-1 p').eq(1).html(data.Data.DynamicStateList[0].Comment)      
+            $('.uswe-low-2').html(data.Data.DynamicStateList[0].CreateTime)      
+        }
+    })
+ }
+ urlId()
+   //点击何处下载
+   function downApp (type){
+       $('#box').show()
+       $('#box p').eq(1).html(type)
+   }
    $('.downApp').click(function(){
        $('#box').show()
    })
    $('.close').click(function(){
        $('#box').hide()
    })
-
+   //判断下载  ios or android
    $('.down').click(function(){
     //    androidURL ="http://xxx/xxx.apk";  
         var browser = {  
         versions: function() {  
-                var u = navigator.userAgent,  
-                    app = navigator.appVersion;  
-                return {  
-                        android: u.indexOf("Android") > -1 || u.indexOf("Linux") >-1,  
-                        iPhone: u.indexOf("iPhone") > -1 ,  
-                        iPad: u.indexOf("iPad") >-1,  
-                        iPod: u.indexOf("iPod") > -1,  
-                    };  
-                } (),  
+        var u = navigator.userAgent,  
+            app = navigator.appVersion;  
+        return {  
+                android: u.indexOf("Android") > -1 || u.indexOf("Linux") >-1,  
+                iPhone: u.indexOf("iPhone") > -1 ,  
+                iPad: u.indexOf("iPad") >-1,  
+                iPod: u.indexOf("iPod") > -1,  
+            };  
+        } (),  
         language: (navigator.browserLanguage || navigator.language).toLowerCase()  
         }  
 
