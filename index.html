@@ -10,7 +10,7 @@
   <link rel="stylesheet"  href="fonts/css/font-awesome.min.css" type="text/css" />  
   <link rel="stylesheet"  href="css/com.css" type="text/css" />  
   <link rel="stylesheet"  href="css/index.css" type="text/css" />
-  <title>圈子</title>
+  <title></title>
 </head>
 <style>
     .swiper-pagination-bullet{opacity: 1;background: #eee;}
@@ -20,7 +20,7 @@
      <div class="homebanner">
          <div class="swiper-container">
             <div class="swiper-wrapper">
-                <div class="swiper-slide">
+                <!--<div class="swiper-slide">
                     <img src="img/index_02.jpg" alt="">                          
                 </div>
                 <div class="swiper-slide">
@@ -28,7 +28,7 @@
                 </div>
                 <div class="swiper-slide">
                     <img src="img/index_02.jpg" alt="">                          
-                </div>
+                </div>-->
             </div>
              <div class="swiper-pagination"></div>
         </div>  
@@ -67,18 +67,18 @@
         <div class="icon-out">
         <div class="icoout">
              <ul>
+                 <!--<li></li>
                  <li></li>
                  <li></li>
                  <li></li>
-                 <li></li>
-                 <li></li>                 
+                 <li></li>-->
              </ul>
             <i onclick="downApp('查看报名详情')" class="fa fa-angle-right"></i>                                     
         </div>     
         </div>             
     </div>
     <div class="content">
-        <div class="content-title"><p>亮点</p></div>
+       
         <div id="desc"></div>
     </div>
      <div class="content dynamic">
@@ -89,7 +89,7 @@
                 <div class="user-img"></div>
                 <div class="user-low-1">
                     <p>张曼玉</p>
-                    <p>M2-军事团</p>
+                    <p><img class='dsImg' src="img/7067380ac966c579391df8543e54c9a.png" alt=""><a>M2-军事团</a></p>
                 </div>
                 <div class="uswe-low-2">8月8日 15:23</div>
             </div>
@@ -98,14 +98,14 @@
                 <ul class="content-img">
                     
                 </ul>
-                <div class="user-icon"> 
-                    <i class="fa fa-thumbs-o-up"></i>   2344 &nbsp;&nbsp;
-                    <i class="fa fa-commenting-o"></i>   2344
+                <div class="user-icon" onclick="downApp('进行点赞或评论')"> 
+                    <i class="fa fa-thumbs-o-up"></i>   <a>2344</a> &nbsp;&nbsp;
+                    <i class="fa fa-commenting-o"></i>   <a>2344</a>
                 </div>
                 <div class="user-comment">
-                    <p><a>TF-BOY</a>:点个赞</p>
-                    <p><a>贾斯丁</a>回复 <a>TF-BOY</a>:同上 </p>
-                    <p onclick="downApp('查看全部评论')">查看全部100条回复</p>
+                    <p></p>
+                    <p></p>
+                    <p onclick="downApp('查看全部评论')">查看全部<a id='commentNumber'>100</a>条回复</p>
                 </div>
             </div>
         </div>
@@ -134,32 +134,37 @@
 <script>
    function urlId(){
     var location = window.location.href;
-    var galleryIds = location.split('?')[1];
+    var Ids = location.split('/')[1];
+    // var Ids = 2;
+    // console.log(location.split('/'))
     //获取活动详情
     $.ajax({
         url: api+GetActivityDetail,
         type:'get',
-        data:{id:2},
+        data:{id:Ids},
         success:function(data){
           console.log(data)
           var PicList = data.Data.PicList;
+          document.title = data.Data.ActivityName
           $.each(PicList,function(i){
-              var html = '<div class="swiper-slide">'
-                            '<img src="'+PicList[i]+'" alt="">'                          
+              var html = '<div class="swiper-slide">'+
+                            '<img src="'+PicList[i]+'">'+                          
                          '</div>'
                $('.swiper-wrapper').append(html)
-                var swiper = new Swiper('.swiper-container', {
-                    paginationClickable:true,   
-                    slidesPerView:1,
-                    centeredSlides: false,
-                    paginationClickable: true,
-                    pagination : '.swiper-pagination',
-                    parallax : true,
-                    loop:true,
-                    speed:1000,
-                    autoplay:5000,
-                
-                });
+               if(PicList.length!=1){
+                    var swiper = new Swiper('.swiper-container', {
+                        paginationClickable:true,   
+                        slidesPerView:1,
+                        centeredSlides: false,
+                        paginationClickable: true,
+                        pagination : '.swiper-pagination',
+                        parallax : true,
+                        loop:true,
+                        speed:1000,
+                        autoplay:5000,
+                    
+                    });
+                }
           })
           $('.actName').html(data.Data.ActivityTypeName)
           $('.homeList h1').html(data.Data.ActivityName)
@@ -206,24 +211,28 @@
     $.ajax({
         url: api+GetActivityApplyList,
         type:'get',
-        data:{id:2},
+        data:{id:Ids},
         success:function(data){
             console.log(data)
             $('.low-4 p a').html(data.Data.length)
-            // for(var i = 0; i < 5;i++){
-            //     var html =  '<li style="background:url('+data.Data[i].CustomerPic+')"></li>'
-            //     $('.icoout ul').append(html)
-            // }
+            for(var i = 0; i < 5;i++){
+                var html =  '<li style="background:url('+data.Data[i].CustomerPic+') no-repeat;background-size:100%;background-position:center center;"></li>'
+                $('.icoout ul').append(html)
+            }
         }
     })
     //获取动态详情信息
     $.ajax({
         url: api+GetDynamicStateDetail,
         type:'get',
-        data:{id:1},
+        data:{id:Ids},
         success:function(data){
             console.log(data)
-            // var PicList = data.Data.PicList;
+            var CommentList = data.Data.CommentList;
+            var PicList = data.Data.PicList;
+            $('#commentNumber').html(CommentList.length)
+            $('.user-comment p').eq(0).html('<a>'+CommentList[0].CustomerName+'</a> : '+CommentList[0].Comment)
+            $('.user-comment p').eq(1).html('<a>'+CommentList[1].CustomerName+'</a> : '+CommentList[1].Comment)            
             // $.each(PicList,function(i){
             //    var html = '<li><img src="'+PicList[i]+'" /></li>'
             //    $('.content-img').append(html)
@@ -258,10 +267,10 @@
     $.ajax({
         url: api+GetDynamicState,
         type: 'get',
-        data:{type:'activity',id:2},
+        data:{type:'activity',id:Ids},
         success:function(data){
             console.log(data)
-            $('#StateNumber').html('('+data.Data.DynamicStateList.length+')')
+            $('#StateNumber').html('( '+data.Data.DynamicStateList.length+' )')
             var PicList = data.Data.DynamicStateList[0].PicList;
             $.each(PicList,function(i){
                var html = '<li><img src="'+PicList[i]+'" /></li>'
@@ -274,9 +283,16 @@
                }
             })
             $('#Desc').html(data.Data.DynamicStateList[0].DynamicStateDesc)
-            // $('.user-low-1 p').eq(0).html(data.Data.DynamicStateList[0].CustomerName)
-            // $('.user-low-1 p').eq(1).html(data.Data.DynamicStateList[0].Comment)      
+            $('.user-low-1 p').eq(0).html(data.Data.DynamicStateList[0].CreateUser)
+            $('.user-low-1 p').eq(1).children('a').html(data.Data.DynamicStateList[0].ActivityName)      
             $('.uswe-low-2').html(data.Data.DynamicStateList[0].CreateTime)      
+            $('.user-icon a').eq(0).html(data.Data.DynamicStateList[0].PraiseCount)
+            $('.user-icon a').eq(1).html(data.Data.DynamicStateList[0].CommentCount)
+            $('.user-img').css({
+                'background':'url('+data.Data.DynamicStateList[0].CreateUserAvatar+') no-repeat',
+                'background-position':'center center',
+                'background-size':'100% 100%'
+            })
         }
     })
  }
@@ -294,7 +310,7 @@
    })
    //判断下载  ios or android
    $('.down').click(function(){
-    //    androidURL ="http://xxx/xxx.apk";  
+    //  androidURL ="http://xxx/xxx.apk";  
         var browser = {  
         versions: function() {  
         var u = navigator.userAgent,  
