@@ -60,7 +60,7 @@
 .content-img li:nth-of-type(6){margin-left:5%;}
 .content-img li:nth-of-type(8){margin-left:5%;}
 .content-img li:nth-of-type(9){margin-left:5%;}
-.user-icon{float:right;height:auto;color:#999;font-size:14px;clear:both;overflow:hidden;}
+.user-icon{float:right;height:auto;color:#999;font-size:14px;clear:both;overflow:hidden;margin-top:20px;}
 .user-comment{width:99%;height:auto;border-radius:10px;margin-top:70px;background: #F8F8F8;border: 1px solid #E7E7E7;padding: 10px 0;position: relative;}
 .user-comment p{width:90%;font-size:16px;margin-top:5px;margin: 0 auto;color: #151515;font-size: 12px;}
 .user-comment p:nth-of-type(3){text-align: right;color:#4A90E2;}
